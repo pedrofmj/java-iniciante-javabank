@@ -1,0 +1,17 @@
+{
+  "account": {
+    "brand": "0001",
+    "name": "jane-doe",
+    "displayName": "Jane Doe",
+    "ballance": 100.0,
+    "statement": {
+      "entries": [
+        {
+          "date": "Mar 19, 2022, 10:43:50 AM",
+          "description": "Initial Ballance",
+          "value": 100.0
+        }
+      ]
+    }
+  }
+}
