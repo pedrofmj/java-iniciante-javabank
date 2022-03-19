@@ -25,7 +25,7 @@ public class AccountStatement {
 		int position = 0;
 		for (int i = 0;i < entries.size(); i++) {
 			AccountStatementEntry ientry = entries.get(i);
-			if (ientry.getDate().compareTo(entry.getDate()) < 0) {
+			if (ientry.getDate().compareTo(entry.getDate()) > 0) {
 				break;
 			}
 			position++;

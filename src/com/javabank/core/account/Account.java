@@ -14,13 +14,12 @@ public class Account {
 	protected double ballance = 0.00;
 	protected AccountStatement statement = null;
 	
-	@Expose(serialize = false, deserialize = false)
-	protected JsonBankingRepository repository = null;
+	protected transient JsonBankingRepository repository = null;
 	
 	public Account(String name, String displayName, double ballance) {
 		setName(name);
 		setDisplayName(displayName);
-		setBallance(ballance);
+		//setBallance(ballance);
 		this.statement = new AccountStatement();
 		if (ballance != 0.00) {
 			addStatementEntry("Initial Ballance", ballance);
@@ -29,12 +28,14 @@ public class Account {
 			initialize();
 		} catch (Throwable t) {
 			// NOTHING
+			t.printStackTrace();
 			this.repository = null;
 		}
 	}
 	
 	public void initialize() throws IOException {
 		this.repository = new JsonBankingRepository(String.format("account-%s-%s", this.brand, this.name));
+		this.repository.getMap().put("account", this);
 		this.repository.initialize();
 	}
 	
@@ -61,6 +62,7 @@ public class Account {
 	}
 	
 	public void addStatementEntry(Date date, String description, double value) {
+		this.ballance += value;
 		getStatement().addEntry(date, description, value);
 		try {
 			if (this.repository != null) {
@@ -72,6 +74,8 @@ public class Account {
 	}
 	
 	public void addStatementEntry(String description, double value) {
+		this.ballance += value;
+		
 		getStatement().addEntry(description, value);
 		try {
 			if (this.repository != null) {

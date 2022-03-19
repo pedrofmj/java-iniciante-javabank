@@ -48,6 +48,8 @@ public class JsonBankingRepository {
 	}
 	
 	public String toString() {
+		//System.out.println(getGson().toJson(((Map<String, Object>) this.data).get("account")));
+		//return getGson().toJson(new HashMap<String, Object>());
 		return getGson().toJson(this.data);
 	}
 	
