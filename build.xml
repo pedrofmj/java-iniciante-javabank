@@ -14,6 +14,7 @@
                 <attribute name="Class-Path" value="."/>
                 <attribute name="Rsrc-Class-Path" value="./"/>
             </manifest>
+        	<zipgroupfileset dir="${dir.buildfile}/lib" includes="*.jar"/>
             <zipfileset src="jar-in-jar-loader.zip"/>
             <fileset dir="${dir.buildfile}/bin"/>
         </jar>
